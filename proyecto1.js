@@ -27,7 +27,7 @@ function dataAlumnos(arregloAlumnos) {
     
     arregloAlumnos.push(nuevoALumno)
 
-    let opcion = Number(prompt("Quiere hacer un nuevo ingreso?\n 1.- Si\n 2.- No"))
+    const opcion = Number(prompt("Quiere hacer un nuevo ingreso?\n 1.- Si\n 2.- No"))
 
     if (opcion==1) {
         dataAlumnos(arregloAlumnos)
@@ -47,10 +47,81 @@ function getPromedioFinal(arregloAlumnos) {
     inicial(arregloAlumnos)
 }
 
-function inicial(arregloAlumnos) {
-    let opcionMenu = Number(prompt("MENÚ\n\n Seleccione una opción:\n 1.- Nuevo ingreso\n 2.- Promedio final del alumno\n 3.- Promedio final del curso por asignatura\n 4.- Lista alumnos aprobados \n 5.- Salir")) 
+function promedioPorRamo(arregloAlumnos) {
+    const idRamo = Number(prompt("MENÚ\n\n Seleccione una opción:\n 1.- Lenguaje\n 2.- Matemática\n 3.- Ciencias\n 4.- Inglés\n 5.- Historia\n 6.- Salir"))
 
+    switch (idRamo) {
+        case 1:
+            calcularNotaRamo(arregloAlumnos, "notaLeng")
+            break;
+        case 2:
+            calcularNotaRamo(arregloAlumnos, "notaMate")
+            break;
+        case 3:
+            calcularNotaRamo(arregloAlumnos, "notaCs")
+            break;
+        case 4:
+            calcularNotaRamo(arregloAlumnos, "notaIng")
+            break;
+        case 5:
+            calcularNotaRamo(arregloAlumnos, "notaHist")
+            break;
+        case 6:
+            inicial(arregloAlumnos)
+            break;
+        default:
+            break;
+    }
+}
+
+function calcularNotaRamo(arregloAlumnos, nombreRamo) {
+    const diccionarioRamos = {
+        "notaLeng": "Lenguaje",
+        "notaMate": "Matemática",
+        "notaCs": "Ciencias",
+        "notaIng": "Inglés",
+        "notaHist": "Historia"
+    }
+    let sumaNotas = arregloAlumnos.reduce((acumulador, alumno) => acumulador + alumno[nombreRamo], 0)
+    const notaFinal = sumaNotas/arregloAlumnos.length
+    alert(`EL promedio final de ${diccionarioRamos[nombreRamo]} es ${notaFinal}`)
+
+    inicial(arregloAlumnos)
+    // alumno.notaLeng
+    // alumno["notaLeng"] dinámico
     
+}
+
+function alumnosApproved(arregloAlumnos) {
+    const aprobados = arregloAlumnos.filter((alumno) => isApproved(alumno.promedioFinalAlumno))
+    let mensajeAprobados = ""
+
+    if (aprobados.length != 0) {
+        aprobados.forEach(alumnoAprobado => {
+            mensajeAprobados = mensajeAprobados + `${alumnoAprobado.nombre} : ${alumnoAprobado.promedioFinalAlumno}\n`
+        });
+        if (aprobados.length==1) {
+            alert(`El alumno aprobado es:\n${mensajeAprobados}`)
+        } else {
+            alert(`La lista de los alumnos aprobados es:\n${mensajeAprobados}`)
+        }
+    }else{
+        alert("No existen alumnos aprobados")
+    }
+    inicial(arregloAlumnos)
+}
+
+function isApproved(promedioFinal) {
+    if (promedioFinal<4) {
+        return false
+    } else {
+        return true
+    }
+}
+
+function inicial(arregloAlumnos) {
+    const opcionMenu = Number(prompt("MENÚ\n\n Seleccione una opción:\n 1.- Nuevo ingreso\n 2.- Promedio final del alumno\n 3.- Promedio final del curso por asignatura\n 4.- Lista alumnos aprobados \n 5.- Salir")) 
+
     switch (opcionMenu) {
         case 1:
             dataAlumnos(arregloAlumnos)
@@ -59,10 +130,10 @@ function inicial(arregloAlumnos) {
             getPromedioFinal(arregloAlumnos)
             break;
         case 3:
-            
+            promedioPorRamo(arregloAlumnos)
             break;
         case 4:
-            
+            alumnosApproved(arregloAlumnos)
             break;
         default:
             break;
@@ -83,54 +154,47 @@ inicial(arregloAlumnos)
 
 
 
-function sumarNotas(){
-    let suma = 0
-    for (let index = 1; index <=6; index++) {
-        let nota
-        while (true) {
-            nota = parseFloat(prompt("Ingrese nota de la asignatura N° " + index))
-            if(!isNaN(nota)){
-                suma = suma + nota
-                break
-            }else{
-                alert("Dato no válido, por favor ingrese un número")
-            }
-        }
-    }
-    return suma
-}
+// function sumarNotas(){
+//     let suma = 0
+//     for (let index = 1; index <=6; index++) {
+//         let nota
+//         while (true) {
+//             nota = parseFloat(prompt("Ingrese nota de la asignatura N° " + index))
+//             if(!isNaN(nota)){
+//                 suma = suma + nota
+//                 break
+//             }else{
+//                 alert("Dato no válido, por favor ingrese un número")
+//             }
+//         }
+//     }
+//     return suma
+// }
 
-function promedioAlumno(sumaTotal) {
+// function promedioAlumno(sumaTotal) {
     
-    let promedio = sumaTotal/6
-    return promedio 
-}
+//     let promedio = sumaTotal/6
+//     return promedio 
+// }
 
-function isApproved(promedioFinal) {
-    if (promedioFinal<4) {
-        return false
-    } else {
-        return true
-    }
-}
 
-function nivelAprobacion(notaFinal) {
-    if (notaFinal<5) {
-        return "aprobado"        
-    } else if (notaFinal<6) {
-        return "aprobado con distinción"
-    } else {
-        return "aprobado con distinción máxima"
-    }
-}
+// function nivelAprobacion(notaFinal) {
+//     if (notaFinal<5) {
+//         return "aprobado"        
+//     } else if (notaFinal<6) {
+//         return "aprobado con distinción"
+//     } else {
+//         return "aprobado con distinción máxima"
+//     }
+// }
 
-function mensajeFinal(isApproved, resultadoFinal, nivelAprobacion, nombreAlumno) {
-    if (isApproved) {
-        alert("al alumno " + nombreAlumno + " está " + nivelAprobacion + " y su nota final es " + resultadoFinal)
-    } else {
-        alert("El alumno "+ nombreAlumno + " reprobó con nota final " + resultadoFinal)
-    }
-}
+// function mensajeFinal(isApproved, resultadoFinal, nivelAprobacion, nombreAlumno) {
+//     if (isApproved) {
+//         alert("al alumno " + nombreAlumno + " está " + nivelAprobacion + " y su nota final es " + resultadoFinal)
+//     } else {
+//         alert("El alumno "+ nombreAlumno + " reprobó con nota final " + resultadoFinal)
+//     }
+// }
 
 // let sumaTotal = sumarNotas()
 
