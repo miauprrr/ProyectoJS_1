@@ -1,5 +1,3 @@
-// alert("Ingrese el nombre y las 6 notas finales de las asignaturas de su alumno")
-
 class Alumno {
     constructor(nombre, notaLeng, notaMate, notaCs, notaIng, notaHist) {
         this.nombre = nombre
@@ -22,7 +20,7 @@ function dataAlumnos(arregloAlumnos) {
     const notaCs = parseFloat(prompt("Ingrese nota final de Ciencias"))
     const notaIng = parseFloat(prompt("Ingrese nota final de Inglés"))
     const notaHist = parseFloat(prompt("Ingrese nota final de Historia"))
-    
+
     let nuevoALumno = new Alumno(nombreAlumno, notaLeng, notaMate, notaCs, notaIng, notaHist)
     
     arregloAlumnos.push(nuevoALumno)
@@ -40,7 +38,12 @@ function getPromedioFinal(arregloAlumnos) {
     if (arregloAlumnos.length != 0) {
         const nombreAlumno = prompt("Ingrese nombre del alumno")
         const resultado = arregloAlumnos.find((alumno) => alumno.nombre === nombreAlumno)
-        alert(`El promedio de ${resultado.nombre} es ${resultado.promedioFinalAlumno}`)
+        if(resultado && nombreAlumno){
+            alert(`El promedio de ${resultado.nombre} es ${resultado.promedioFinalAlumno}`)
+        }else if(!resultado && nombreAlumno){
+            alert("Error. Alumno ingresado no existe")
+            getPromedioFinal(arregloAlumnos)
+        }
     }else{
         alert("Error. No hay notas ingresadas de los alumnos")
     }
@@ -70,6 +73,8 @@ function promedioPorRamo(arregloAlumnos) {
             inicial(arregloAlumnos)
             break;
         default:
+            alert("Seleccione una de las opciones indicadas en el menú")
+            promedioPorRamo(arregloAlumnos)
             break;
     }
 }
@@ -84,12 +89,13 @@ function calcularNotaRamo(arregloAlumnos, nombreRamo) {
     }
     let sumaNotas = arregloAlumnos.reduce((acumulador, alumno) => acumulador + alumno[nombreRamo], 0)
     const notaFinal = sumaNotas/arregloAlumnos.length
-    alert(`EL promedio final de ${diccionarioRamos[nombreRamo]} es ${notaFinal}`)
+    if (!Number.isNaN(notaFinal)) {
+        alert(`EL promedio final de ${diccionarioRamos[nombreRamo]} es ${notaFinal}`)
+    }else {
+        alert("No hay datos ingresados")
+    }
 
     inicial(arregloAlumnos)
-    // alumno.notaLeng
-    // alumno["notaLeng"] dinámico
-    
 }
 
 function alumnosApproved(arregloAlumnos) {
@@ -135,7 +141,12 @@ function inicial(arregloAlumnos) {
         case 4:
             alumnosApproved(arregloAlumnos)
             break;
+        case 5:
+            alert("Saliendo del menú")
+            break;
         default:
+            alert("Seleccione una de las opciones indicadas en el menú")
+            inicial(arregloAlumnos)
             break;
     }
 }
@@ -143,71 +154,3 @@ function inicial(arregloAlumnos) {
 let arregloAlumnos = []
 
 inicial(arregloAlumnos)
-
-
-
-
-
-
-
-
-
-
-
-// function sumarNotas(){
-//     let suma = 0
-//     for (let index = 1; index <=6; index++) {
-//         let nota
-//         while (true) {
-//             nota = parseFloat(prompt("Ingrese nota de la asignatura N° " + index))
-//             if(!isNaN(nota)){
-//                 suma = suma + nota
-//                 break
-//             }else{
-//                 alert("Dato no válido, por favor ingrese un número")
-//             }
-//         }
-//     }
-//     return suma
-// }
-
-// function promedioAlumno(sumaTotal) {
-    
-//     let promedio = sumaTotal/6
-//     return promedio 
-// }
-
-
-// function nivelAprobacion(notaFinal) {
-//     if (notaFinal<5) {
-//         return "aprobado"        
-//     } else if (notaFinal<6) {
-//         return "aprobado con distinción"
-//     } else {
-//         return "aprobado con distinción máxima"
-//     }
-// }
-
-// function mensajeFinal(isApproved, resultadoFinal, nivelAprobacion, nombreAlumno) {
-//     if (isApproved) {
-//         alert("al alumno " + nombreAlumno + " está " + nivelAprobacion + " y su nota final es " + resultadoFinal)
-//     } else {
-//         alert("El alumno "+ nombreAlumno + " reprobó con nota final " + resultadoFinal)
-//     }
-// }
-
-// let sumaTotal = sumarNotas()
-
-// let resultadoFinal = promedioAlumno(sumaTotal)
-
-// let resultado = isApproved(resultadoFinal)
-
-// let aprobacion = nivelAprobacion(resultadoFinal)
-
-
-// mensajeFinal(resultado, resultadoFinal, aprobacion, nombreAlumno)
-
-// console.log(nombreAlumno)
-// console.log(resultadoFinal)
-// console.log(resultado)
-// console.log(aprobacion)
