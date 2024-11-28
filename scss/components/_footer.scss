@@ -1,0 +1,13 @@
+footer{
+    padding: 50px;
+    margin: nth($margin-list, 3);
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+    a{
+        img{
+            width: 130px;
+        }
+    }
+}

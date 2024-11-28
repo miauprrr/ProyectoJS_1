@@ -1,0 +1,29 @@
+// mixin, variables, animaciones, etc 
+
+// Variables 
+$color-base: black;
+$background-color: #ffffffad;
+$select-background-color: #fbb1cc72;
+
+// Lista
+$margin-list: 0px, 10px, 20px, 40px;
+
+
+// Extend
+%display-flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+%margin-left-right{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+
+// Mixin
+@mixin grid-justify($grid-area, $justify, $bottom){
+    grid-area: $grid-area;
+    justify-self: $justify;
+    padding-bottom: $bottom;
+}

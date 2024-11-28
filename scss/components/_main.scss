@@ -1,0 +1,154 @@
+main{
+    .section-1{
+        background-image: url(../img/background-1.jpg);
+        width: 100%;
+        height: calc(100vh - 200.81px);
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        h1{
+            margin-bottom: 10px;
+        }
+        .link-productos{
+            border: 2px solid $color-base;
+            padding: 5px;
+            background-color:$background-color;
+        }
+    }
+    .section-2{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        align-items: center;
+        padding: 20px;
+        @extend %display-flex-center;
+        flex-direction: column;
+        .div-products{
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 30px;
+            .productos{
+                margin: nth($margin-list, 4);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                div{
+                    overflow: hidden;
+                    a{
+                        img{
+                            width: 300px;
+                            &:hover{
+                                -webkit-transform:scale(1.3);
+                                transform:scale(1.3);
+                            }
+                        }
+                    }
+                }
+                .crema{
+                    font-weight: bold;
+                }
+                .precio{
+                    padding: 5px;
+                    &:hover{
+                        background: #dcd9d9;
+                    }
+                }
+            }
+        }
+        .div-link-productos{
+            text-align: center;
+            .link-productos{
+                border: 2px solid $color-base;
+                padding: 5px;
+                background-color: $background-color;
+            }
+        }
+    }
+    .section-3{
+        background-image: url(../img/background-2.png);
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        padding: 50px;
+        h2{
+            margin-bottom: 20px;
+        }
+    }
+}
+
+// Contacto
+
+.contacto{
+    text-align: center;
+    .section-2{
+        h1{ 
+            margin-bottom: 30px;
+        }
+    }
+    .mapa-contacto{
+        margin-top: 50px;
+    }
+}
+
+// Nosotros
+
+.nosotros{
+    text-align: center;
+    .section-2{
+        h1{
+            margin-bottom: 30px;
+        }
+        .div-nosotros{
+            display: grid;
+            grid-auto-rows: 250px;
+            grid-template-columns: 1fr 1fr 1fr;
+            row-gap: 100px;
+            grid-template-areas: 
+            "ceo desc-ceo desc-ceo"
+            "desc-team desc-team team"
+            ;
+            align-items: center;
+            margin-top: 40px;
+            .div-ceo{
+                grid-area: ceo;
+                justify-self: end;
+                a{
+                    .img-ceo{
+                        width: 300px;
+                    }
+                }
+            }
+            .div-ceo-desc{
+                grid-area: desc-ceo;
+                font-style: italic;
+                justify-self: start;  
+                p{
+                   @extend %margin-left-right;
+                    &::selection{
+                        background-color: $select-background-color; 
+                    }
+                }
+            }
+            .div-equipo{
+                grid-area: team;
+                justify-self: start;
+                a{
+                    .img-team{
+                        height: 300px;
+                    }
+                }
+            }
+            .div-equipo-desc{
+                grid-area: desc-team;
+                justify-self: end;
+                p{
+                   @extend %margin-left-right;
+                    &::selection{
+                        background-color: $select-background-color; 
+                    }
+                }
+            }
+        }
+    }
+}

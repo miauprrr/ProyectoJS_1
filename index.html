@@ -1,11 +1,130 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <meta name="description" content="En Tienda Miau, encuentra todo lo que necesitas para tu rutina de belleza. Desde cuidados de la piel que rejuvenecen hasta maquillaje que resalta tu mejor versión. ¡Explora nuestras ofertas y consigue el look perfecto!">
+    <meta name="keywords" content="skincare, maquillaje, cremas, toner, serum, contorno de ojos, bloqueador solar, esencia, mascarilla, cuidado de la piel, rostro, piel, cuerpo, rubor, corrector, tinte labial">
+    <meta property="og:type" content="e-commerce">
+    <meta property="og:title" content="Miau - Skincare">
+    <meta property="og:url" content="https://miauprrr.github.io/miau_skincare/">
+    <meta property="og:description" content="Tienda especializada en skincare: desde limpiadores hasta tratamientos avanzados. Productos efectivos para una piel saludable y luminosa. ¡Descúbrelos hoy!">
+    <meta property="og:image" content="https://miauprrr.github.io/miau_skincare/img/miau-footer.jpg">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+
+    <title>Miau - Inicio</title>
 </head>
+
 <body>
-    <script src="proyecto1.js"></script>
-    
+    <!-- cabeza -->
+    <header>
+        <div>
+            <a href="https://www.facebook.com"><img class="rrss" src="./img/facebook.png" alt="facebook"></a>
+            <a href="https://www.instagram.com"><img class="rrss" src="./img/instagram.png" alt="instagram"></a>
+            <a href="https://www.tiktok.com"><img class="rrss" src="./img/tik-tok.png" alt="tik-tok"></a>
+            <a href="./pages/carrito.html" id="boton-carrito" class="me-3 pt-2 position-absolute top-0 end-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>
+            </a>
+        </div>
+        <!-- Logo -->
+        <a class="miau-title" href="./index.html"><img src="./img/miau-title.jpg" alt="Logo tienda miau"></a>
+        <!-- barra de navegación  -->
+        <nav class="navbar navbar-expand-md">
+            <div class="container-fluid justify-content-end">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav navbar-center fs-5 text">
+                        <li class="nav-item p-3 fw-bold"><a class="nav-link" href="./index.html">Inicio</a></li>
+                        <li class="nav-item p-3 fw-bold"><a class="nav-link" href="./pages/skincare.html">Skincare</a></li>
+                        <li class="nav-item p-3 fw-bold"><a class="nav-link" href="./pages/maquillaje.html">Maquillaje</a></li>
+                        <li class="nav-item p-3 fw-bold"><a class="nav-link" href="./pages/nosotros.html">Nosotros</a></li>
+                        <li class="nav-item p-3 fw-bold"><a class="nav-link" href="./pages/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal de la pagina -->
+    <main>
+        <section class="section-1">
+            <h1>EL CUIDADO ES AHORA</h1>
+            <!-- BOTON -->
+            <a class="link-productos" href="./pages/skincare.html">Ver productos</a>
+        </section>
+        <section class="section-2">
+            <h2>Nuestros productos</h2>
+            <div class="div-products lista-cremas">
+            </div>
+            <div class="div-link-productos">
+                <a class="link-productos" href="./pages/skincare.html">Ver productos</a>
+            </div>
+        </section>
+        <section class="section-3">
+            <h2>Opiniones</h2>
+            <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item opacity-back active">
+                        <p>"¡Este serum ha sido un cambio de juego para mi rutina de cuidado de la piel! La textura es ligera y se absorbe rápidamente sin dejar residuos grasos. Después de un par de semanas, mi piel se ve mucho más luminosa y uniforme. Definitivamente lo recomendaría a cualquiera con piel seca o apagada."</p>
+                    </div>
+                    <div class="carousel-item opacity-back">
+                        <p>"Compre esta crema hidratante hace un mes y estoy muy contento con los resultados. Mi piel se siente hidratada durante todo el día y he notado una reducción en las líneas finas. El empaque también es muy práctico, me encanta que venga con un dosificador."</p>
+                    </div>
+                    <div class="carousel-item opacity-back">
+                        <p>"La mascarilla exfoliante es fantástica. La uso una vez a la semana y mi piel se siente tan suave y renovada después. No es demasiado agresiva, pero realmente hace el trabajo. El aroma es agradable y el envase es muy bonito. Sin duda, seguiré comprándola."</p>
+                    </div>
+                    <div class="carousel-item opacity-back">
+                        <p>"El gel limpiador es increíble, limpia en profundidad sin dejar mi piel seca. Me encanta que esté formulado sin sulfatos y que tenga ingredientes naturales. La espuma es suave y el producto dura mucho, por lo que el precio es muy razonable."</p>
+                    </div>
+                    <div class="carousel-item opacity-back">
+                        <p>"No puedo estar más feliz con este protector solar. Es ligero, no deja residuos blancos y se mezcla bien con mi maquillaje. Además, no me ha provocado brotes, lo cual es un gran plus. Perfecto para el uso diario. ¡Repetiré sin duda!"</p>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+    </main>
+    <!-- pie de página  -->
+    <footer>
+        <a href="./index.html"><img class="miau-footer" src="./img/miau-footer.jpg" alt="Logo tienda miau"></a>
+        <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./pages/skincare.html">Skincare</a></li>
+            <li><a href="./pages/maquillaje.html">Maquillaje</a></li>
+            <li><a href="./pages/nosotros.html">Nosotros</a></li>
+            <li><a href="./pages/contacto.html">Contacto</a></li>
+        </ul>
+        <ul class="footer-queries">
+            <li><a href="">Envío y devoluciones</a></li>
+            <li><a href="">Políticas de la tienda</a></li>
+            <li><a href="">Métodos de pago</a></li>
+            <li><a href="">FAQ</a></li>
+        </ul>
+    </footer>
+    <!-- <script src="proyecto1.js"></script> -->
+    <script src="codermiau.js"></script>
 </body>
 </html>

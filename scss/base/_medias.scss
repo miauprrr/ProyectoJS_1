@@ -1,0 +1,122 @@
+// ver si las media queries tienen puesto el recorrio padre a hijo
+
+@media screen and (max-width:1050px) {
+    .nosotros .section-2 .div-nosotros{
+        grid-auto-rows: 250px;
+        grid-template-columns: repeat(5, 1fr);
+        row-gap: 100px;
+        grid-template-areas: 
+        "ceo ceo desc-ceo desc-ceo desc-ceo"
+        "desc-team desc-team desc-team team team"
+        ;
+        align-items: center;
+        margin-top: 40px;
+    }
+    .nosotros .section-2 .div-nosotros div p{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .nosotros .section-2 .div-nosotros .div-equipo a .img-team{
+        height: 250px;
+    }
+    .carousel-inner div p{
+        padding: 70px;
+    }
+}
+
+@media screen and (max-width:970px) {
+    .nosotros .section-2 .div-nosotros{
+        grid-auto-rows: 230px;
+        grid-template-columns: 1fr;
+        row-gap: 0px;
+        grid-template-areas: 
+        "ceo"
+        "desc-ceo"
+        "team"
+        "desc-team";
+        align-items: center;
+        margin-top: 40px;
+    }
+    
+    .nosotros .section-2 .div-nosotros div p{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .nosotros .section-2 .div-nosotros .div-ceo{
+        grid-area: ceo;
+        justify-self: center;
+    }
+    
+    .nosotros .section-2 .div-nosotros .div-ceo-desc{
+        grid-area: desc-ceo;
+        font-style: italic;
+        justify-self: center;
+    }
+    
+    .nosotros .section-2 .div-nosotros .div-equipo{
+        grid-area: team;
+        justify-self: center;
+    }
+    
+    .nosotros .section-2 .div-nosotros .div-equipo-desc{
+        grid-area: desc-team;
+        justify-self: center;
+    }
+    .nosotros .section-2 .div-nosotros .div-equipo a .img-team{
+        height: 250px;
+    }
+}
+
+@media screen and (max-width:550px) {
+    .carousel-inner div p{
+        padding: 30px;
+    }
+}
+
+@media screen and (max-width:420px) {
+    .nosotros .section-2 .div-nosotros{
+        grid-auto-rows: auto;
+        grid-template-columns: 1fr;
+        row-gap: 0px;
+        grid-template-areas: 
+        "ceo"
+        "desc-ceo"
+        "team"
+        "desc-team"
+        ;
+        align-items: center;
+        margin-top: 40px;
+    }
+    .nosotros .section-2 .div-nosotros div p{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .nosotros .section-2 .div-nosotros .div-ceo{
+        @include grid-justify(ceo, center, 10px);
+    }
+    
+    .nosotros .section-2 .div-nosotros .div-ceo-desc{
+        @include grid-justify(desc-ceo, center, 10px);
+        font-style: italic;
+    }
+    
+    .nosotros .section-2 .div-nosotros .div-equipo{
+        @include grid-justify(team, center, 10px);
+    }
+    
+    .nosotros .section-2 .div-nosotros .div-equipo-desc{
+        @include grid-justify(desc-team, center, 10px);
+    }
+    .nosotros .section-2 .div-nosotros .div-equipo a .img-team{
+        height: 200px;
+    }
+    
+    main .section-2 .div-products .productos{
+        margin: nth($margin-list, 2);
+    }
+    
+    .footer-queries li a, .footer-queries li{
+        margin: nth($margin-list, 1);
+        margin-bottom: 10px;
+    }
+}

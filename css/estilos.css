@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.navbarlist, main .section-2 {
+  display: flex;
+  justify-content: center; }
+
+.nosotros .section-2 .div-nosotros .div-ceo-desc p, .nosotros .section-2 .div-nosotros .div-equipo-desc p {
+  margin-left: 100px;
+  margin-right: 100px; }
+
+/* reset */
+* {
+  margin: 0px;
+  padding: 0; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #fcfcfe; }
+
+ul {
+  list-style-type: none; }
+
+a {
+  text-decoration: none;
+  color: black; }
+  a:hover {
+    font-weight: bold;
+    color: initial; }
+
+.navbarlist {
+  font-weight: bold;
+  font-size: large;
+  flex-wrap: wrap; }
+
+.navbarlist li {
+  margin: 20px; }
+
+.section-1 * {
+  position: relative;
+  top: 40%; }
+
+#carouselExampleAutoplaying .carousel-inner div p {
+  padding: 80px;
+  font-weight: 400;
+  font-size: large; }
+
+#carouselExampleAutoplaying .carousel-control-prev {
+  left: -50px; }
+
+#carouselExampleAutoplaying .carousel-control-next {
+  right: -50px; }
+
+.ui-w-40 {
+  width: 40px !important;
+  height: auto; }
+
+.card {
+  box-shadow: 0 1px 15px 1px rgba(52, 40, 104, 0.08); }
+
+.ui-product-color {
+  display: inline-block;
+  overflow: hidden;
+  margin: .144em;
+  width: .875rem;
+  height: .875rem;
+  border-radius: 10rem;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15) inset;
+  vertical-align: middle; }
+
+footer * {
+  margin: 20px; }
+
+header div {
+  margin-left: 30px; }
+  header div a img {
+    width: 30px;
+    margin: 10px; }
+
+header .miau-title {
+  display: block;
+  text-align: center; }
+  header .miau-title img {
+    width: 250px; }
+
+main .section-1 {
+  background-image: url(../img/background-1.jpg);
+  width: 100%;
+  height: calc(100vh - 200.81px);
+  background-size: cover;
+  background-position: center;
+  text-align: center; }
+  main .section-1 h1 {
+    margin-bottom: 10px; }
+  main .section-1 .link-productos {
+    border: 2px solid black;
+    padding: 5px;
+    background-color: #ffffffad; }
+
+main .section-2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  padding: 20px;
+  flex-direction: column; }
+  main .section-2 .div-products {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 30px; }
+    main .section-2 .div-products .productos {
+      margin: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      main .section-2 .div-products .productos div {
+        overflow: hidden; }
+        main .section-2 .div-products .productos div a img {
+          width: 300px; }
+          main .section-2 .div-products .productos div a img:hover {
+            -webkit-transform: scale(1.3);
+            transform: scale(1.3); }
+      main .section-2 .div-products .productos .crema {
+        font-weight: bold; }
+      main .section-2 .div-products .productos .precio {
+        padding: 5px; }
+        main .section-2 .div-products .productos .precio:hover {
+          background: #dcd9d9; }
+  main .section-2 .div-link-productos {
+    text-align: center; }
+    main .section-2 .div-link-productos .link-productos {
+      border: 2px solid black;
+      padding: 5px;
+      background-color: #ffffffad; }
+
+main .section-3 {
+  background-image: url(../img/background-2.png);
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 50px; }
+  main .section-3 h2 {
+    margin-bottom: 20px; }
+
+.contacto {
+  text-align: center; }
+  .contacto .section-2 h1 {
+    margin-bottom: 30px; }
+  .contacto .mapa-contacto {
+    margin-top: 50px; }
+
+.nosotros {
+  text-align: center; }
+  .nosotros .section-2 h1 {
+    margin-bottom: 30px; }
+  .nosotros .section-2 .div-nosotros {
+    display: grid;
+    grid-auto-rows: 250px;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 100px;
+    grid-template-areas: "ceo desc-ceo desc-ceo" "desc-team desc-team team";
+    align-items: center;
+    margin-top: 40px; }
+    .nosotros .section-2 .div-nosotros .div-ceo {
+      grid-area: ceo;
+      justify-self: end; }
+      .nosotros .section-2 .div-nosotros .div-ceo a .img-ceo {
+        width: 300px; }
+    .nosotros .section-2 .div-nosotros .div-ceo-desc {
+      grid-area: desc-ceo;
+      font-style: italic;
+      justify-self: start; }
+      .nosotros .section-2 .div-nosotros .div-ceo-desc p::selection {
+        background-color: #fbb1cc72; }
+    .nosotros .section-2 .div-nosotros .div-equipo {
+      grid-area: team;
+      justify-self: start; }
+      .nosotros .section-2 .div-nosotros .div-equipo a .img-team {
+        height: 300px; }
+    .nosotros .section-2 .div-nosotros .div-equipo-desc {
+      grid-area: desc-team;
+      justify-self: end; }
+      .nosotros .section-2 .div-nosotros .div-equipo-desc p::selection {
+        background-color: #fbb1cc72; }
+
+footer {
+  padding: 50px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  text-align: center; }
+  footer a img {
+    width: 130px; }
+
+@media screen and (max-width: 1050px) {
+  .nosotros .section-2 .div-nosotros {
+    grid-auto-rows: 250px;
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 100px;
+    grid-template-areas: "ceo ceo desc-ceo desc-ceo desc-ceo" "desc-team desc-team desc-team team team";
+    align-items: center;
+    margin-top: 40px; }
+  .nosotros .section-2 .div-nosotros div p {
+    margin-left: 50px;
+    margin-right: 50px; }
+  .nosotros .section-2 .div-nosotros .div-equipo a .img-team {
+    height: 250px; }
+  .carousel-inner div p {
+    padding: 70px; } }
+
+@media screen and (max-width: 970px) {
+  .nosotros .section-2 .div-nosotros {
+    grid-auto-rows: 230px;
+    grid-template-columns: 1fr;
+    row-gap: 0px;
+    grid-template-areas: "ceo" "desc-ceo" "team" "desc-team";
+    align-items: center;
+    margin-top: 40px; }
+  .nosotros .section-2 .div-nosotros div p {
+    margin-left: 50px;
+    margin-right: 50px; }
+  .nosotros .section-2 .div-nosotros .div-ceo {
+    grid-area: ceo;
+    justify-self: center; }
+  .nosotros .section-2 .div-nosotros .div-ceo-desc {
+    grid-area: desc-ceo;
+    font-style: italic;
+    justify-self: center; }
+  .nosotros .section-2 .div-nosotros .div-equipo {
+    grid-area: team;
+    justify-self: center; }
+  .nosotros .section-2 .div-nosotros .div-equipo-desc {
+    grid-area: desc-team;
+    justify-self: center; }
+  .nosotros .section-2 .div-nosotros .div-equipo a .img-team {
+    height: 250px; } }
+
+@media screen and (max-width: 550px) {
+  .carousel-inner div p {
+    padding: 30px; } }
+
+@media screen and (max-width: 420px) {
+  .nosotros .section-2 .div-nosotros {
+    grid-auto-rows: auto;
+    grid-template-columns: 1fr;
+    row-gap: 0px;
+    grid-template-areas: "ceo" "desc-ceo" "team" "desc-team";
+    align-items: center;
+    margin-top: 40px; }
+  .nosotros .section-2 .div-nosotros div p {
+    margin-left: 50px;
+    margin-right: 50px; }
+  .nosotros .section-2 .div-nosotros .div-ceo {
+    grid-area: ceo;
+    justify-self: center;
+    padding-bottom: 10px; }
+  .nosotros .section-2 .div-nosotros .div-ceo-desc {
+    grid-area: desc-ceo;
+    justify-self: center;
+    padding-bottom: 10px;
+    font-style: italic; }
+  .nosotros .section-2 .div-nosotros .div-equipo {
+    grid-area: team;
+    justify-self: center;
+    padding-bottom: 10px; }
+  .nosotros .section-2 .div-nosotros .div-equipo-desc {
+    grid-area: desc-team;
+    justify-self: center;
+    padding-bottom: 10px; }
+  .nosotros .section-2 .div-nosotros .div-equipo a .img-team {
+    height: 200px; }
+  main .section-2 .div-products .productos {
+    margin: 10px; }
+  .footer-queries li a, .footer-queries li {
+    margin: 0px;
+    margin-bottom: 10px; } }

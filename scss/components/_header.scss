@@ -1,0 +1,18 @@
+header{
+    div{
+        margin-left: 30px;
+        a{
+            img{
+                width: 30px;
+                margin: nth($margin-list, 2);
+            }
+        }
+    }
+    .miau-title{
+        display: block;
+        text-align: center;
+        img{
+            width: 250px;
+        }
+    }
+}
