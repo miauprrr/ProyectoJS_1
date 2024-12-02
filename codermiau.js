@@ -158,8 +158,25 @@ function agregarCarrito() {
                 })
             }
             localStorage.setItem("carrito", JSON.stringify(carrito))
+            Toastify({
+                text: "Se ha agregado al carrito :)",
+                gravity: "bottom",
+                duration: 2000,
+                style: {
+                    background: "linear-gradient(to right, #fdff9c, #fdc3db)",
+                }
+            }).showToast();
         })
     }
+}
+function calculoValorParcial(cremasArray, maquillajeArray, producto) {
+    let division = producto.id.split("_")
+    let productoEncontrado = {}
+    division[0] == "c" ?  productoEncontrado = cremasArray.find((crema) => crema.id == division[1]) : productoEncontrado = maquillajeArray.find((maquillaje) => maquillaje.id == division[1])
+
+    let valorParcial = producto.cantidad * Number(productoEncontrado.precio)
+
+    return [valorParcial, productoEncontrado]
 }
 
 function leerCarrito(cremasArray, maquillajeArray) {
@@ -167,16 +184,13 @@ function leerCarrito(cremasArray, maquillajeArray) {
         let dataCarrito = JSON.parse(localStorage.getItem("carrito"))
         let tbodyCarrito = document.getElementById("tbody-carrito")
         let newProduct = ""
+        let valorTotal = 0
         dataCarrito.forEach(producto => {
-            let division = producto.id.split("_")
-            let productoEncontrado = {}
-            if (division[0] == "c") {
-                productoEncontrado = cremasArray.find((crema) => crema.id == division[1])
-            } else {
-                productoEncontrado = maquillajeArray.find((maquillaje) => maquillaje.id == division[1])
-            }
-            console.log(producto.cantidad * productoEncontrado.precio)
-            newProduct += ` <tr>
+
+            let [valorParcial, productoEncontrado] = calculoValorParcial(cremasArray, maquillajeArray, producto)
+
+            valorTotal = valorTotal + valorParcial
+            newProduct += ` <tr id="${producto.id}">
                                 <td class="p-4">
                                     <div class="media align-items-center">
                                         <img src=${productoEncontrado.imagen}
@@ -187,22 +201,69 @@ function leerCarrito(cremasArray, maquillajeArray) {
                                     </div>
                                 </td>
                                 <td class="text-right font-weight-semibold align-middle p-4">$${productoEncontrado.precio}</td>
-                                <td class="align-middle p-4"><input type="text" class="form-control text-center"
+                                <td class="align-middle p-4"><input type="number" min="1" class="cantidad-producto-carrito form-control text-center"
                                         value="${producto.cantidad}"></td>
                                 <td class="text-right font-weight-semibold align-middle p-4">${producto.cantidad * productoEncontrado.precio}</td>
-                                <td class="text-center align-middle px-0"><a href="#"
-                                        class="shop-tooltip close float-none text-danger" title=""
-                                        data-original-title="Remove">×</a></td>
+                                <td class="text-center align-middle"><button type="button" class="boton-borrar btn btn-danger">X</button></td>
                             </tr>`
             
-        });
+        })
         tbodyCarrito.innerHTML = newProduct
-        console.log(dataCarrito)
+
+        let contenedor = document.createElement("strong")
+        contenedor.innerText = `$${valorTotal}`
+        let totalCarrito = document.getElementById("total-carrito")
+        totalCarrito.appendChild(contenedor)
     }
 }
 
+function modificarCantidad(cremasArray, maquillajeArray) {
+    if (window.location.pathname.includes('carrito.html')) {
+        let inputsCantidad = document.getElementsByClassName("cantidad-producto-carrito")
+        for (const thisInput of inputsCantidad) {
+            thisInput.addEventListener("change", (e) => {
 
+                let dataCarrito = JSON.parse(localStorage.getItem("carrito"));
+                let valorTotal = 0
+
+                for (const producto of dataCarrito) {
+                    if (producto.id === e.target.parentNode.parentNode.id) {
+                        producto.cantidad = Number(e.target.value)
+                        let [valorParcial] = calculoValorParcial(cremasArray, maquillajeArray, producto)
+                        let nodoValorParcial = e.target.parentNode.nextElementSibling
+                        nodoValorParcial.innerText = `$${valorParcial}`
+                    }
+                    let [valorParcial] = calculoValorParcial(cremasArray, maquillajeArray, producto)
+                    valorTotal += valorParcial
+                }
+
+                let totalCarrito = document.getElementById("total-carrito").firstChild
+                totalCarrito.innerText = `$${valorTotal}`
+
+                localStorage.setItem("carrito", JSON.stringify(dataCarrito))
+            })
+        }
+    }
+}
+
+function borrarProducto(cremasArray, maquillajeArray) {
+    if (window.location.pathname.includes('carrito.html')) {
+        let botonesBorrar = document.getElementsByClassName("boton-borrar")
+        for (const botonDelete of botonesBorrar) {
+            botonDelete.addEventListener("click", (e) => {
+                let idProducto = e.target.parentNode.parentNode.id
+                let dataCarrito = JSON.parse(localStorage.getItem("carrito"));
+                let indiceProductoCarrrito = dataCarrito.findIndex(elemento => elemento.id === idProducto);
+                dataCarrito.splice(indiceProductoCarrrito, 1)
+                localStorage.setItem("carrito", JSON.stringify(dataCarrito))
+                location.reload()
+            })
+        }
+    }
+}
 
 mostrarProductos(cremasArray, maquillajeArray)
 agregarCarrito()
 leerCarrito(cremasArray, maquillajeArray)
+modificarCantidad(cremasArray, maquillajeArray)
+borrarProducto(cremasArray, maquillajeArray)
