@@ -1,0 +1,116 @@
+{
+    "productos": {
+        "cremasArray": [
+            {
+                "id": 1,
+                "tipo": "c",
+                "nombre": "Crema para cuerpo",
+                "precio": "14990",
+                "stock": 10,
+                "imagen": "/img/product-1.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 2,
+                "tipo": "c",
+                "nombre": "Crema contorno de ojos",
+                "precio": "15990",
+                "stock": 10,
+                "imagen": "/img/product-2.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 3,
+                "tipo": "c",
+                "nombre": "Crema de rostro",
+                "precio": "25000",
+                "stock": 10,
+                "imagen": "/img/product-3.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 4,
+                "tipo": "c",
+                "nombre": "Aceite facial",
+                "precio": "23980",
+                "stock": 10,
+                "imagen": "/img/product-4.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 5,
+                "tipo": "c",
+                "nombre": "Kit rostro piel sensible",
+                "precio": "37980",
+                "stock": 10,
+                "imagen": "/img/product-5.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 6,
+                "tipo": "c",
+                "nombre": "Toner todo tipo de piel",
+                "precio": "14990",
+                "stock": 10,
+                "imagen": "/img/product-6.jpg",
+                "descripcion": ""
+            }
+        ],
+        "maquillajeArray" : [
+            {
+                "id": 1,
+                "tipo": "m",
+                "nombre": "Paleta de sombras",
+                "precio": "26990",
+                "stock": 10,
+                "imagen": "../img/maquillaje-1.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 2,
+                "tipo": "m",
+                "nombre": "kit labiales, esmaltes y sombras",
+                "precio": "32980",
+                "stock": 10,
+                "imagen": "../img/maquillaje-2.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 3,
+                "tipo": "m",
+                "nombre": "Tinte de labios",
+                "precio": "12990",
+                "stock": 10,
+                "imagen": "../img/maquillaje-3.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 4,
+                "tipo": "m",
+                "nombre": "Set de labiales",
+                "precio": "17980",
+                "stock": 10,
+                "imagen": "../img/maquillaje-4.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 5,
+                "tipo": "m",
+                "nombre": "Iluminador",
+                "precio": "23990",
+                "stock": 10,
+                "imagen": "../img/maquillaje-5.jpg",
+                "descripcion": ""
+            },
+            {
+                "id": 6,
+                "tipo": "m",
+                "nombre": "Sombra con brillos para ojos",
+                "precio": "8990",
+                "stock": 10,
+                "imagen": "../img/maquillaje-6.jpg",
+                "descripcion": ""
+            }
+        ]
+    }
+}
