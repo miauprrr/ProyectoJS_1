@@ -49,9 +49,12 @@ a {
 #carouselExampleAutoplaying .carousel-control-next {
   right: -50px; }
 
-.ui-w-40 {
-  width: 40px !important;
+.ui-w-70 {
+  width: 70px !important;
   height: auto; }
+
+.media-body {
+  margin-left: 5px; }
 
 .card {
   box-shadow: 0 1px 15px 1px rgba(52, 40, 104, 0.08); }

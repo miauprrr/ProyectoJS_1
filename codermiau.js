@@ -28,13 +28,13 @@ function createProducts(arregloProductos) {
                                         <p class='precio'>$${producto.precio}</p>
                                         <button class='boton-compra' id='${producto.tipo}_${producto.id}'>Agregar al carro</button>
                                     </div>`
-    });
+    })
     return newElement
 }
 
 function agregarCarrito() {
     let carrito = []
-    let almacenado = JSON.parse(localStorage.getItem("carrito")) || [];
+    let almacenado = JSON.parse(localStorage.getItem("carrito")) || []
     carrito = almacenado
     let botonesCarrito = document.getElementsByClassName("boton-compra")
     for (const thisButton of botonesCarrito) {
@@ -57,7 +57,7 @@ function agregarCarrito() {
                 style: {
                     background: "linear-gradient(to right, #fdff9c, #fdc3db)",
                 }
-            }).showToast();
+            }).showToast()
         })
     }
 }
@@ -76,26 +76,24 @@ function leerCarrito(cremasArray, maquillajeArray) {
         let dataCarrito = JSON.parse(localStorage.getItem("carrito"))
         let tbodyCarrito = document.getElementById("tbody-carrito")
         let newProduct = ""
-        let valorTotal = 0
         dataCarrito.forEach(producto => {
 
-            let [valorParcial, productoEncontrado] = calculoValorParcial(cremasArray, maquillajeArray, producto)
+            let [,productoEncontrado] = calculoValorParcial(cremasArray, maquillajeArray, producto)
 
-            valorTotal = valorTotal + valorParcial
             newProduct += ` <tr id="${producto.id}">
                                 <td class="p-4">
-                                    <div class="media align-items-center">
+                                    <div class="media align-items-center d-flex">
                                         <img src=${productoEncontrado.imagen}
-                                            class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                                            class="d-block ui-w-70 ui-bordered mr-4" alt="">
                                         <div class="media-body">
-                                            <a href="#" class="d-block text-dark">${productoEncontrado.nombre}</a>
+                                            <a class="d-block text-dark">${productoEncontrado.nombre}</a>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="text-right font-weight-semibold align-middle p-4">$${productoEncontrado.precio}</td>
                                 <td class="align-middle p-4"><input type="number" min="1" class="cantidad-producto-carrito form-control text-center"
                                         value="${producto.cantidad}"></td>
-                                <td class="text-right font-weight-semibold align-middle p-4">${producto.cantidad * productoEncontrado.precio}</td>
+                                <td class="text-right font-weight-semibold align-middle p-4">$${producto.cantidad * productoEncontrado.precio}</td>
                                 <td class="text-center align-middle"><button type="button" class="boton-borrar btn btn-danger">X</button></td>
                             </tr>`
             
@@ -103,6 +101,7 @@ function leerCarrito(cremasArray, maquillajeArray) {
         tbodyCarrito.innerHTML = newProduct
 
         let contenedor = document.createElement("strong")
+        let valorTotal = calculoValorTotal(cremasArray, maquillajeArray, dataCarrito)
         contenedor.innerText = `$${valorTotal}`
         let totalCarrito = document.getElementById("total-carrito")
         totalCarrito.appendChild(contenedor)
@@ -112,27 +111,45 @@ function leerCarrito(cremasArray, maquillajeArray) {
 function modificarCantidad(cremasArray, maquillajeArray) {
     if (window.location.pathname.includes('carrito.html')) {
         let inputsCantidad = document.getElementsByClassName("cantidad-producto-carrito")
+
+        let valoresAnteriores = {}
+
         for (const thisInput of inputsCantidad) {
+            let valorInicial = Number(thisInput.value)
+            valoresAnteriores[thisInput.id] = valorInicial
+
+            thisInput.addEventListener("focus", (e) => {
+                valoresAnteriores[e.target.id] = Number(e.target.value)
+            })
+
             thisInput.addEventListener("change", (e) => {
+                let dataCarrito = JSON.parse(localStorage.getItem("carrito"))
+                let cantidadProductoCarrito = Number(e.target.value)
+                let valorAnterior = valoresAnteriores[e.target.id]
 
-                let dataCarrito = JSON.parse(localStorage.getItem("carrito"));
-                let valorTotal = 0
-
-                for (const producto of dataCarrito) {
-                    if (producto.id === e.target.parentNode.parentNode.id) {
-                        producto.cantidad = Number(e.target.value)
-                        let [valorParcial] = calculoValorParcial(cremasArray, maquillajeArray, producto)
-                        let nodoValorParcial = e.target.parentNode.nextElementSibling
-                        nodoValorParcial.innerText = `$${valorParcial}`
-                    }
-                    let [valorParcial] = calculoValorParcial(cremasArray, maquillajeArray, producto)
-                    valorTotal += valorParcial
+                if (cantidadProductoCarrito <= 0 && valorAnterior > 0) {
+                    e.target.value = valorAnterior
+                    cantidadProductoCarrito = valorAnterior
                 }
 
-                let totalCarrito = document.getElementById("total-carrito").firstChild
-                totalCarrito.innerText = `$${valorTotal}`
+                if (cantidadProductoCarrito > 0) {
+                    for (const producto of dataCarrito) {
+                        if (producto.id === e.target.parentNode.parentNode.id) {
+                            producto.cantidad = cantidadProductoCarrito
+                            let [valorParcial] = calculoValorParcial(cremasArray, maquillajeArray, producto)
+                            let nodoValorParcial = e.target.parentNode.nextElementSibling
+                            nodoValorParcial.innerText = `$${valorParcial}`
+                        }
+                    }
 
-                localStorage.setItem("carrito", JSON.stringify(dataCarrito))
+                    let totalCarrito = document.getElementById("total-carrito").firstChild
+                    let valorTotal = calculoValorTotal(cremasArray, maquillajeArray, dataCarrito)
+                    totalCarrito.innerText = `$${valorTotal}`
+
+                    valoresAnteriores[e.target.id] = cantidadProductoCarrito
+
+                    localStorage.setItem("carrito", JSON.stringify(dataCarrito))
+                }
             })
         }
     }
@@ -144,14 +161,33 @@ function borrarProducto(cremasArray, maquillajeArray) {
         for (const botonDelete of botonesBorrar) {
             botonDelete.addEventListener("click", (e) => {
                 let idProducto = e.target.parentNode.parentNode.id
-                let dataCarrito = JSON.parse(localStorage.getItem("carrito"));
-                let indiceProductoCarrrito = dataCarrito.findIndex(elemento => elemento.id === idProducto);
+                let dataCarrito = JSON.parse(localStorage.getItem("carrito"))
+                let indiceProductoCarrrito = dataCarrito.findIndex(elemento => elemento.id === idProducto)
                 dataCarrito.splice(indiceProductoCarrrito, 1)
                 localStorage.setItem("carrito", JSON.stringify(dataCarrito))
-                location.reload()
+                let dataCarritoNew = JSON.parse(localStorage.getItem("carrito"))
+                let valorTotal = calculoValorTotal(cremasArray, maquillajeArray, dataCarritoNew)
+                let totalCarrito = document.getElementById("total-carrito").firstChild
+                let productoAEliminar = e.target.parentNode.parentNode
+                productoAEliminar.remove()
+                totalCarrito.innerText = `$${valorTotal}`
+
             })
         }
     }
+}
+
+function calculoValorTotal(cremasArray, maquillajeArray, productos) {
+    let valorTotal = 0
+    for (const producto of productos) {
+        let division = producto.id.split("_")
+        let productoEncontrado = {}
+        division[0] == "c" ?  productoEncontrado = cremasArray.find((crema) => crema.id == division[1]) : productoEncontrado = maquillajeArray.find((maquillaje) => maquillaje.id == division[1])
+
+        let valorParcial = producto.cantidad * Number(productoEncontrado.precio)
+        valorTotal = valorTotal + valorParcial
+    }
+    return valorTotal
 }
 
 let data = await getData()
